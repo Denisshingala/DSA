@@ -59,3 +59,29 @@ const getNextPermutation = (arr) => {
 
 arr = [5,4,3,2,1];
 console.log(getNextPermutation(arr));
+
+/**
+ * Longest consecutive sequence
+ */
+const longestConsecutive = function(nums) {
+    let length = nums.length, ans = -1, temp = 0;
+
+    nums.sort((a,b) => a - b);
+
+    for(let i = 0; i < length - 1; i++) {
+        if(nums[i] == nums[i+1])
+            continue;
+
+        if(nums[i]+1 == nums[i+1]) {
+            temp++;
+        } else {
+            ans = Math.max(ans, temp+1);
+            temp = 0;
+        }
+    }
+    ans = Math.max(ans, temp+1);
+    return ans;
+};
+
+arr = [0,3,7,2,5,8,4,6,0,1];
+console.log(longestConsecutive(arr));
